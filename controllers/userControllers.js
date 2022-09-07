@@ -9,8 +9,8 @@ exports.getUsers = (req, res, next) => {
 };
 
 exports.updateProfil = (req, res, next) => {
-  const { email, name, password } = req.body;
-  User.findByIdAndUpdate(req.user._id, { name, about }, { new: true })
+  const { email, name } = req.body;
+  User.findByIdAndUpdate(req.user._id, { email, name }, { new: true })
     .then((user) => res.status(200).send({ data: user }))
     .catch((err) => {
       checkErrorValidation(err, next);

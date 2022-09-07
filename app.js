@@ -6,6 +6,8 @@ const { routes } = require('./routes/routes')
 const cors = require('cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger')
 const app = express();
+const { errors } = require('celebrate');
+const { checkErrorsAll } = require('./errors/errors');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,6 +30,13 @@ app.use(cors());
 app.use(routes)
 
 app.use(errorLogger);
+
+app.use(errors());
+
+app.use((err, req, res, next) => {
+  checkErrorsAll(err, req, res);
+  next();
+});
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
