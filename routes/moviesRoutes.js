@@ -21,7 +21,7 @@ moviesRoutes.post('/movies', celebrate({
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
   }).unknown(true),
-}), addMovies);
+}), createMovies);
 
 moviesRoutes.delete('movies/_id', deleteMovies);
 
