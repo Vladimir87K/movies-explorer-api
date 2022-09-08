@@ -1,5 +1,24 @@
 const NotFoundError = require('./NotFoundError');
 const BadRequestError = require('./BadRequestError');
+const { default: isEmail } = require('validator/lib/isEmail');
+
+const validationAuthentification = (req, res, next) => {
+  const { email, password } = req.body;
+  if (isEmail(email) && password !== '') {
+    next();
+  } else {
+    next(new BadRequestError('Переданы некорректные данные'));
+  }
+};
+
+const validationUserBody = (req, res, next) => {
+  const { email, password, name } = req.body;
+  if (isEmail(email) && password !== '' && name!== '') {
+    next();
+  } else {
+    next(new BadRequestError('Переданы некорректные данные'));
+  }
+}
 
 // eslint-disable-next-line no-unused-vars
 const errorUrl = (req, res) => {
@@ -29,5 +48,5 @@ const checkErrorsAll = (err, req, res) => {
 };
 
 module.exports = {
-  errorUrl, checkErrorsAll, checkErrorValidation, checkErrorValidationId,
+  errorUrl, checkErrorsAll, checkErrorValidation, checkErrorValidationId, validationAuthentification, validationUserBody,
 };

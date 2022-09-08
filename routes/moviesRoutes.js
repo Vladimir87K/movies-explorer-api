@@ -1,6 +1,7 @@
 const express = require('express');
 const { celebrate, Joi } = require('celebrate');
-const { redex } = require('../utils/utils');
+const redex = require('../utils/utils');
+const {getMovies, createMovies, deleteMovies} = require('../controllers/moviesControllers')
 
 const moviesRoutes = express.Router();
 

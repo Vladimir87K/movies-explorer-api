@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const User = require('../models/user');
 const { NODE_ENV, JWT_SECRET } = process.env;
 const bcrypt = require('bcryptjs');
@@ -58,7 +60,7 @@ exports.login = (req, res, next) => {
     .catch(next);
 };
 
-exports.getUsers = (req, res, next) => {
+module.exports.getUsers = (req, res, next) => {
   User.findById(req.user)
     .then((user) => {
       res.status(200).send({ data: user });

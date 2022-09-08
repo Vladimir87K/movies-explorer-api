@@ -3,7 +3,7 @@ const { NotFoundError } = require('../errors/NotFoundError');
 const { ForbiddenError } = require('../errors/ForbiddenError');
 const { checkErrorValidation } = require('../errors/errors');
 
-exports.getCards = (req, res, next) => {
+exports.getMovies = (req, res, next) => {
   Film.find({})
     .populate('_id')
     .then((cards) => res.send({ data: cards }))

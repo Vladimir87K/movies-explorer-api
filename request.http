@@ -1,0 +1,23 @@
+GET http://localhost:3000/users/me
+Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFhMzcyYzVjMDdkZjQ5ZmE4MjgxOTIiLCJpYXQiOjE2NjI2NjM0NzQsImV4cCI6MTY2MzI2ODI3NH0.NCLrdkhMsZJ1YlK7eUrwzW-IpyPufnELH2ia3nqZdvI
+
+###
+
+POST http://localhost:3000/signin
+Content-Type: application/json
+
+{
+  "email" : "catty@gmail.com",
+  "password" : "111111"
+}
+
+###
+
+PATCH http://localhost:3000/users/me
+Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFhMzcyYzVjMDdkZjQ5ZmE4MjgxOTIiLCJpYXQiOjE2NjI2NjM0NzQsImV4cCI6MTY2MzI2ODI3NH0.NCLrdkhMsZJ1YlK7eUrwzW-IpyPufnELH2ia3nqZdvI
+Content-Type: application/json
+
+{
+  "email" : "catty@gmail.com",
+  "name" : "Vovik"
+}
