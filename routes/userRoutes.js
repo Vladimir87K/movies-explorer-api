@@ -6,8 +6,6 @@ const {
 
 const userRoutes = express.Router();
 
-const redex = require('../utils/utils.js');
-
 userRoutes.get('/users/me', getUsers);
 
 userRoutes.patch('/users/me', celebrate({

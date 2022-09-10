@@ -1,25 +1,32 @@
+/* eslint-disable import/newline-after-import */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/order */
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { PORT = 3000 } = process.env;
-const router = require('./routes');
 const cors = require('cors');
-const { requestLogger, errorLogger } = require('./middlewares/logger')
+const router = require('./routes');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 const app = express();
+const helmet = require('helmet');
 const { errors } = require('celebrate');
 const { checkErrorsAll } = require('./errors/errors');
+const limiter = require('./utils/limiter');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(limiter);
+app.use(helmet());
 
-mongoose.connect('mongodb://localhost:27017/mestodb', {
+mongoose.connect('mongodb://localhost:27017/moviesdb', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   family: 4,
 })
   .then(() => console.log('Connected db'))
   .catch((e) => console.log(e));
-  
+
 app.use((req, res, next) => {
   console.log(`${req.method}: ${req.path} ${JSON.stringify(req.body)}`);
   next();

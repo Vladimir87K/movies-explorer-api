@@ -1,6 +1,8 @@
+/* eslint-disable import/order */
 require('dotenv').config();
 
 const User = require('../models/user');
+
 const { NODE_ENV, JWT_SECRET } = process.env;
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -47,9 +49,9 @@ exports.login = (req, res, next) => {
         throw new UnauthorizedError('Неправильные почта или пароль');
       }
       return bcrypt.compare(password, user.password)
-        // eslint-disable-next-line consistent-return
         .then((matched) => {
           if (matched) {
+            console.log(matched);
             const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key', { expiresIn: '7d' });
             res.status(200).send({ token });
           } else {

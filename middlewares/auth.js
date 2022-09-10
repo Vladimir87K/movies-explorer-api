@@ -10,7 +10,7 @@ if (NODE_ENV === 'production') {
 } else {
   key = 'some-secret-key';
 }
-// eslint-disable-next-line consistent-return
+
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;
   if (!authorization || !authorization.startsWith('Bearer ')) {
@@ -27,6 +27,5 @@ module.exports = (req, res, next) => {
   }
 
   req.user = payload;
-  console.log(req.user);
   next();
 };

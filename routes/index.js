@@ -4,17 +4,16 @@ const moviesRoutes = require('./moviesRoutes');
 const { NotFoundError } = require('../errors/NotFoundError');
 const { validationUserBody, validationAuthentification } = require('../errors/errors');
 const { createUser, login } = require('../controllers/usersControllers');
-const auth = require('../middlewares/auth')
+const auth = require('../middlewares/auth');
 
 router.post('/signup', validationUserBody, createUser);
-router.post('/signin',  validationAuthentification, login);
+router.post('/signin', validationAuthentification, login);
 router.use(auth);
 router.use('/', moviesRoutes);
 router.use('/', userRoutes);
 
 router.use((req, res, next) => {
-  console.log('OOOps!!!')
-  next(new NotFoundError('Заданный маршрут не найден'))
+  next(new NotFoundError('Заданный маршрут не найден'));
 });
 
 module.exports = router;

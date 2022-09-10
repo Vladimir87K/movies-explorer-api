@@ -1,6 +1,6 @@
+const { default: isEmail } = require('validator/lib/isEmail');
 const NotFoundError = require('./NotFoundError');
 const BadRequestError = require('./BadRequestError');
-const { default: isEmail } = require('validator/lib/isEmail');
 
 const validationAuthentification = (req, res, next) => {
   const { email, password } = req.body;
@@ -13,12 +13,12 @@ const validationAuthentification = (req, res, next) => {
 
 const validationUserBody = (req, res, next) => {
   const { email, password, name } = req.body;
-  if (isEmail(email) && password !== '' && name!== '') {
+  if (isEmail(email) && password !== '' && name !== '') {
     next();
   } else {
     next(new BadRequestError('Переданы некорректные данные'));
   }
-}
+};
 
 // eslint-disable-next-line no-unused-vars
 const errorUrl = (req, res) => {
@@ -41,12 +41,16 @@ const checkErrorValidationId = (err, next) => {
   }
 };
 
-// eslint-disable-next-line consistent-return
 const checkErrorsAll = (err, req, res) => {
   const { statusCode = 500, message } = err;
   res.status(statusCode).send({ message: statusCode === 500 ? 'На сервере произошла ошибка' : message });
 };
 
 module.exports = {
-  errorUrl, checkErrorsAll, checkErrorValidation, checkErrorValidationId, validationAuthentification, validationUserBody,
+  errorUrl,
+  checkErrorsAll,
+  checkErrorValidation,
+  checkErrorValidationId,
+  validationAuthentification,
+  validationUserBody,
 };
