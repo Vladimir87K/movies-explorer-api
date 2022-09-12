@@ -1,14 +1,15 @@
-GET http://localhost:3000/movies
+GET http://localhost:3000/doggy
 Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFjNDhkZjM5ZTViNGQzZGZlMThkNmUiLCJpYXQiOjE2NjI5OTI0NTcsImV4cCI6MTY2MzU5NzI1N30.oGcBZY9tmOkvh0eghppG0195-wKd6DCOkMF96RtAE-I
 
 ###
 
-POST http://localhost:3000/signin
+POST http://localhost:3000/signup
 Content-Type: application/json
 
 {
-  "email" : "catty@gmail.com",
-  "password" : "111111"
+  "email" : "dog@gmail.com",
+  "password" : "111111",
+  "name" : "Vladimir"
 }
 
 ###
@@ -19,7 +20,7 @@ Content-Type: application/json
 
 {
   "email" : "catty@gmail.com",
-  "name" : "Vovik"
+  "name" : "Vovik1"
 }
 
 ###

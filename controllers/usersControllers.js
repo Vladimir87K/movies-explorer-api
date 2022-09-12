@@ -9,6 +9,14 @@ const ConflictError = require('../errors/ConflictError');
 const BadRequestError = require('../errors/BadRequestError');
 const UnauthorizedError = require('../errors/UnauthorizedError');
 
+const updateUser = (req, res, next, email, name) => {
+  User.findByIdAndUpdate(req.user._id, { email, name }, { new: true })
+    .then((userUpdate) => res.status(200).send({ data: userUpdate }))
+    .catch((err) => {
+      checkErrorValidation(err, next);
+    });
+};
+
 exports.createUser = (req, res, next) => {
   const {
     email, password, name,
@@ -64,9 +72,20 @@ module.exports.getUsers = (req, res, next) => {
 
 exports.updateProfil = (req, res, next) => {
   const { email, name } = req.body;
-  User.findByIdAndUpdate(req.user._id, { email, name }, { new: true })
-    .then((user) => res.status(200).send({ data: user }))
-    .catch((err) => {
-      checkErrorValidation(err, next);
+  User.findById(req.user)
+    .then((user) => {
+      if (user.email === email) {
+        updateUser(req, res, next, email, name);
+      } else {
+        User.find({ email })
+          .then((user1) => {
+            if (!user1) {
+              updateUser(req, res, next, email, name);
+            } else {
+              next(new ConflictError('Пользователь с указанной почтой уже существует'));
+            }
+          })
+          .catch(next);
+      }
     });
 };
