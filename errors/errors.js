@@ -2,19 +2,27 @@ const { default: isEmail } = require('validator/lib/isEmail');
 const NotFoundError = require('./NotFoundError');
 const BadRequestError = require('./BadRequestError');
 
+const emailValidation = (email, next) => {
+  if (!isEmail(email)) {
+    next(new BadRequestError('Некорректно заполнен Email'));
+  } else {
+    next();
+  }
+};
+
 const validationAuthentification = (req, res, next) => {
   const { email, password } = req.body;
-  if (isEmail(email) && password !== '') {
-    next();
+  if (email !== '' && password !== '') {
+    emailValidation(email, next);
   } else {
-    next(new BadRequestError('Переданы некорректные данные'));
+    next(new BadRequestError('Не заполнены требуемые поля'));
   }
 };
 
 const validationUserBody = (req, res, next) => {
   const { email, password, name } = req.body;
-  if (isEmail(email) && password !== '' && name !== '') {
-    next();
+  if (email !== '' && password !== '' && name !== '') {
+    emailValidation(email, next);
   } else {
     next(new BadRequestError('Переданы некорректные данные'));
   }

@@ -5,19 +5,14 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const { checkErrorValidation } = require('../errors/errors');
-const { ConflictError } = require('../errors/ConflictError');
-const { BadRequestError } = require('../errors/BadRequestError');
-const { UnauthorizedError } = require('../errors/UnauthorizedError');
+const ConflictError = require('../errors/ConflictError');
+const BadRequestError = require('../errors/BadRequestError');
+const UnauthorizedError = require('../errors/UnauthorizedError');
 
 exports.createUser = (req, res, next) => {
   const {
     email, password, name,
   } = req.body;
-  User.findOne({ email }).then((film) => {
-    if (film) {
-      throw new ConflictError('Указанный Email уже сохранен');
-    }
-  });
   bcrypt.hash(password, 10)
     .then((hash) => User.create({
       name, email, password: hash,
@@ -49,7 +44,6 @@ exports.login = (req, res, next) => {
       return bcrypt.compare(password, user.password)
         .then((matched) => {
           if (matched) {
-            console.log(matched);
             const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key', { expiresIn: '7d' });
             res.status(200).send({ token });
           } else {

@@ -1,9 +1,9 @@
 GET http://localhost:3000/movies
-Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFjNDhkZjM5ZTViNGQzZGZlMThkNmUiLCJpYXQiOjE2NjI3OTgzMTcsImV4cCI6MTY2MzQwMzExN30.lPGmxtJw_0NhjTSMUKkYQKI3PR3Dj6AjWkLvMdaGYeo
+Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFjNDhkZjM5ZTViNGQzZGZlMThkNmUiLCJpYXQiOjE2NjI5OTI0NTcsImV4cCI6MTY2MzU5NzI1N30.oGcBZY9tmOkvh0eghppG0195-wKd6DCOkMF96RtAE-I
 
 ###
 
-POST http://localhost:3000/cat
+POST http://localhost:3000/signin
 Content-Type: application/json
 
 {
@@ -14,13 +14,18 @@ Content-Type: application/json
 ###
 
 PATCH http://localhost:3000/users/me
-Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFjNDhkZjM5ZTViNGQzZGZlMThkNmUiLCJpYXQiOjE2NjI3OTgzMTcsImV4cCI6MTY2MzQwMzExN30.lPGmxtJw_0NhjTSMUKkYQKI3PR3Dj6AjWkLvMdaGYeo
+Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFjNDhkZjM5ZTViNGQzZGZlMThkNmUiLCJpYXQiOjE2NjI5OTk4NTcsImV4cCI6MTY2MzYwNDY1N30.Z2DTnW2ohRxrad808YWJdZoXK09L7KGn10p7c2JcJAE
 Content-Type: application/json
+
+{
+  "email" : "catty@gmail.com",
+  "name" : "Vovik"
+}
 
 ###
 
 POST http://localhost:3000/movies
-Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFjNDhkZjM5ZTViNGQzZGZlMThkNmUiLCJpYXQiOjE2NjI3OTgzMTcsImV4cCI6MTY2MzQwMzExN30.lPGmxtJw_0NhjTSMUKkYQKI3PR3Dj6AjWkLvMdaGYeo
+Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFjNDhkZjM5ZTViNGQzZGZlMThkNmUiLCJpYXQiOjE2NjI5OTI0NTcsImV4cCI6MTY2MzU5NzI1N30.oGcBZY9tmOkvh0eghppG0195-wKd6DCOkMF96RtAE-I
 Content-Type: application/json
 
 {
@@ -32,12 +37,12 @@ Content-Type: application/json
   "image" : "https://sun9-64.userapi.com/impf/c857732/v857732295/d9bf5/NxdsDc3qTYQ.jpg?size=0x0&quality=90&proxy=1&sign=14aacb0a8540b9c794eab06e1eda16a0&c_uniq_tag=aNXPI__lO8hw5LhRpRZjXcdPNQhti6WW550QgVMJAPo&type=video_thumb",
   "trailerLink" : "https://sun9-64.userapi.com/impf/c857732/v857732295/d9bf5/NxdsDc3qTYQ.jpg?size=0x0&quality=90&proxy=1&sign=14aacb0a8540b9c794eab06e1eda16a0&c_uniq_tag=aNXPI__lO8hw5LhRpRZjXcdPNQhti6WW550QgVMJAPo&type=video_thumb",
   "thumbnail" : "https://sun9-64.userapi.com/impf/c857732/v857732295/d9bf5/NxdsDc3qTYQ.jpg?size=0x0&quality=90&proxy=1&sign=14aacb0a8540b9c794eab06e1eda16a0&c_uniq_tag=aNXPI__lO8hw5LhRpRZjXcdPNQhti6WW550QgVMJAPo&type=video_thumb",
-  "movieId" : "631b23a6cc35ff85ed4d965e",
+  "movieId" : 1,
   "nameRU" : "Сельские будни",
   "nameEN" : "Не переводится..."
 }
 
 ###
 
-DELETE http://localhost:3000/movies/631c4e169c04adba60a8e752
-Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFjNDhkZjM5ZTViNGQzZGZlMThkNmUiLCJpYXQiOjE2NjI3OTgzMTcsImV4cCI6MTY2MzQwMzExN30.lPGmxtJw_0NhjTSMUKkYQKI3PR3Dj6AjWkLvMdaGYeo
+DELETE http://localhost:3000/movies/631f467337b4b953f12bf5c9
+Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFjNDhkZjM5ZTViNGQzZGZlMThkNmUiLCJpYXQiOjE2NjI5OTI0NTcsImV4cCI6MTY2MzU5NzI1N30.oGcBZY9tmOkvh0eghppG0195-wKd6DCOkMF96RtAE-I
