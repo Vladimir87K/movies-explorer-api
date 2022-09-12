@@ -8,6 +8,7 @@ const helmet = require('helmet');
 const { errors } = require('celebrate');
 const router = require('./routes');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { dataMovies } = require('./utils/config');
 
 const app = express();
 
@@ -24,7 +25,7 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect('mongodb://localhost:27017/moviesdb', {
+mongoose.connect(dataMovies, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   family: 4,
