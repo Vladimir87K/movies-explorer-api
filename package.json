@@ -1,7 +1,7 @@
 {
   "name": "movies-explorer-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Бэкенд дипломного проекта ЯП, предначначен для хранения личных данных, в т.ч. библиотеки фильмов",
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/Vladimir87K/movies-explorer-api.git"
   },
-  "author": "",
+  "author": "Vladimir Kuklin",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Vladimir87K/movies-explorer-api/issues"
@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
     "celebrate": "^15.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.2",

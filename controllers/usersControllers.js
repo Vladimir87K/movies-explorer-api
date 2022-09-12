@@ -1,11 +1,9 @@
-/* eslint-disable import/order */
 require('dotenv').config();
-
-const User = require('../models/user');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const User = require('../models/user');
 const { checkErrorValidation } = require('../errors/errors');
 const { ConflictError } = require('../errors/ConflictError');
 const { BadRequestError } = require('../errors/BadRequestError');

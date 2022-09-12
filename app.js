@@ -1,23 +1,28 @@
-/* eslint-disable import/newline-after-import */
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable import/order */
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+
 const { PORT = 3000 } = process.env;
 const cors = require('cors');
-const router = require('./routes');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
-const app = express();
 const helmet = require('helmet');
 const { errors } = require('celebrate');
+const router = require('./routes');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
+
+const app = express();
+
 const { checkErrorsAll } = require('./errors/errors');
 const limiter = require('./utils/limiter');
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(requestLogger);
+
 app.use(limiter);
+
 app.use(helmet());
+
+app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.connect('mongodb://localhost:27017/moviesdb', {
   useNewUrlParser: true,
@@ -32,7 +37,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(requestLogger);
 app.use(cors());
 
 app.use(router);

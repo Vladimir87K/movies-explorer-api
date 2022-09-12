@@ -20,8 +20,7 @@ const validationUserBody = (req, res, next) => {
   }
 };
 
-// eslint-disable-next-line no-unused-vars
-const errorUrl = (req, res) => {
+const errorUrl = () => {
   throw new NotFoundError('Указан некорректный Url');
 };
 

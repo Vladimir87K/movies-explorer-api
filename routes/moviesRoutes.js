@@ -9,19 +9,19 @@ moviesRoutes.get('/movies', getMovies);
 
 moviesRoutes.post('/movies', celebrate({
   body: Joi.object().keys({
-    country: Joi.string().min(2).max(30).required(),
-    director: Joi.string().min(2).max(30).required(),
+    country: Joi.string().required(),
+    director: Joi.string().required(),
     duration: Joi.number().min(2).required(),
     year: Joi.string().required(),
     description: Joi.string().required(),
     image: Joi.string().pattern(redex),
     trailerLink: Joi.string().pattern(redex),
     thumbnail: Joi.string().pattern(redex),
-    owner: Joi.string().alphanum().hex().length(24),
-    movieId: Joi.string().alphanum().hex().length(24),
-    nameRU: Joi.string().min(2).required(),
-    nameEN: Joi.string().min(2).required(),
-  }).unknown(true),
+    owner: Joi.string(),
+    movieId: Joi.number().integer().length(24),
+    nameRU: Joi.string().required(),
+    nameEN: Joi.string().required(),
+  }),
 }), createMovies);
 
 moviesRoutes.delete('/movies/:movieId', celebrate({
