@@ -3,24 +3,23 @@ Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFjNDhk
 
 ###
 
-POST http://localhost:3000/signup
+POST http://localhost:3000/signin
 Content-Type: application/json
 
 {
   "email" : "dog@gmail.com",
-  "password" : "111111",
-  "name" : "Vladimir"
+  "password" : "111111"
 }
 
 ###
 
 PATCH http://localhost:3000/users/me
-Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFjNDhkZjM5ZTViNGQzZGZlMThkNmUiLCJpYXQiOjE2NjI5OTk4NTcsImV4cCI6MTY2MzYwNDY1N30.Z2DTnW2ohRxrad808YWJdZoXK09L7KGn10p7c2JcJAE
+Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFmNmJiNzZkYTYyODRhZTEwZjE4OGEiLCJpYXQiOjE2NjMxNTgxNTIsImV4cCI6MTY2Mzc2Mjk1Mn0.yvfhmr7pyBhoI0e2CODuZRKIJgC9yQy_bS0bxAqKwD4
 Content-Type: application/json
 
 {
-  "email" : "catty@gmail.com",
-  "name" : "Vovik3"
+  "email" : "dog@gmail.com",
+  "name" : "Vovik"
 }
 
 ###

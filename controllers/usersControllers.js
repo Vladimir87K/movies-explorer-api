@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const { checkErrorValidation } = require('../errors/errors');
-const { keySecret } = require('../utils/utils');
+const { keySecret } = require('../utils/config');
 const ConflictError = require('../errors/ConflictError');
 const BadRequestError = require('../errors/BadRequestError');
 const UnauthorizedError = require('../errors/UnauthorizedError');
@@ -77,7 +77,7 @@ exports.updateProfil = (req, res, next) => {
       } else {
         User.find({ email })
           .then((user1) => {
-            if (!user1) {
+            if (user1.length === 0) {
               updateUser(req, res, next, email, name);
             } else {
               next(new ConflictError('Пользователь с указанной почтой уже существует'));
