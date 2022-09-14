@@ -12,7 +12,7 @@ const emailValidation = (email, next) => {
 
 const validationAuthentification = (req, res, next) => {
   const { email, password } = req.body;
-  if (email !== '' && password !== '') {
+  if (email !== undefined && password !== undefined) {
     emailValidation(email, next);
   } else {
     next(new BadRequestError('Не заполнены требуемые поля'));
@@ -20,10 +20,13 @@ const validationAuthentification = (req, res, next) => {
 };
 
 const validationUserBody = (req, res, next) => {
+  console.log('Click1');
   const { email, password, name } = req.body;
-  if (email !== '' && password !== '' && name !== '') {
+  if (email !== undefined && password !== undefined && name !== undefined) {
+    console.log(email, password, name);
     emailValidation(email, next);
   } else {
+    console.log('Click3');
     next(new BadRequestError('Переданы некорректные данные'));
   }
 };
