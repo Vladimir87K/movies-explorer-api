@@ -4,8 +4,7 @@ const ForbiddenError = require('../errors/ForbiddenError');
 const { checkErrorValidation, checkErrorValidationId } = require('../errors/errors');
 
 exports.getMovies = (req, res, next) => {
-  Movie.find({})
-    .populate('_id')
+  Movie.find({ owner: req.user._id })
     .then((movies) => res.send({ data: movies }))
     .catch(next);
 };
